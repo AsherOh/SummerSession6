@@ -1,5 +1,6 @@
 import "./Nav.css";
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
     const [show, setShow] = useState(false);
@@ -17,6 +18,14 @@ export default function Nav() {
         }
     }, [])
 
+    const [searchValue, setSearchValue] = useState('');
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        setSearchValue(e.target.value);
+        navigate(`/search?q=${e.target.value}`);
+    };
+
     return (
         <nav className={`nav ${show && "nav_black"}`}>
             {/*로고, 유저 아이콘 */}
@@ -26,7 +35,13 @@ export default function Nav() {
                 className='nav__logo'
                 onClick={() => window.location.reload()}
             />
-
+            <input
+                value={searchValue}
+                onChange={handleChange}
+                className="nav__input"
+                type="text"
+                placeholder="영화 제목을 입력해주세요."
+            />
             <img
                 alt="User logged"
                 src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"

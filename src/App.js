@@ -4,51 +4,35 @@ import Nav from './components/Nav';
 import Row from './components/Row';
 import requests from './api/requests';
 import Footer from './components/Footer';
+import { Route, Outlet, Routes } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import DetailPage from './pages/DetailPage';
+import SearchPage from './pages/SearchPage';
+
+const Layout = () => {
+    return (
+        <div>
+            <Nav />
+
+            <Outlet />
+
+            <Footer />
+        </div>
+    );
+}
 
 function App() {
-  return (
-    <div className="App">
-      <Nav />
-      <Banner />
-      <Row
-        title="NETFLIX ORIGINALS"
-        id="NO"
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow
-      />
-      <Row
-        title="Trending Now"
-        id="TN"
-        fetchUrl={requests.fetchTrending}
-      />
-      <Row
-        title="Top Rated"
-        id="TR"
-        fetchUrl={requests.fetchTopRated}
-      />
-      <Row
-        title="Action Movies"
-        id="AM"
-        fetchUrl={requests.fetchActionMovies}
-      />
-      <Row
-        title="Comedy Movies"
-        id="CM"
-        fetchUrl={requests.fetchComedyMovies}
-      />
-      <Row
-        title="Horror Movies"
-        id="HM"
-        fetchUrl={requests.fetchHorroryMovies}
-      />
-      <Row
-        title="Romance Movies"
-        id="RM"
-        fetchUrl={requests.fetchRomanceMovies}
-      />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<MainPage />}></Route>
+                    <Route path=':movieId' element={<DetailPage />}></Route>
+                    <Route path='search' element={<SearchPage />}></Route>
+                </Route>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
