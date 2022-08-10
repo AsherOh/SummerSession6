@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter basename='SummerSession6-movie'>
+  <BrowserRouter basename='SummerSession6-movie/Netfilx_React_CloneSession'>
     <App />
   </BrowserRouter>
 );

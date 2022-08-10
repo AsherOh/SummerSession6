@@ -2,7 +2,7 @@
     "name": "netfilx",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://AsherOh.github.io/SummerSession6-movie",
+    "homepage": "https://AsherOh.github.io/SummerSession6-movie/Netfilx_React_CloneSession",
     "dependencies": {
         "@testing-library/jest-dom": "5.16.4",
         "@testing-library/react": "13.3.0",
