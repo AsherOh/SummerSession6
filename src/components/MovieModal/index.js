@@ -18,12 +18,6 @@ function MovieModal({
     const handleCloseModal = (e) => {
         if (e.target === outSection.current) setModalOpen(false);
     };
-    // useEffect(() => {
-    //     window.addEventListener("click", handleCloseModal);
-    //     return () => {
-    //         window.addEventListener("click", handleCloseModal);
-    //     };
-    // }, []);
 
     const [tailerId, setTailerId] = useState("");
     useEffect(() => {
