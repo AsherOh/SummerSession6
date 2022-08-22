@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./MovieModal.css";
 
 const movieTrailer = require('movie-trailer');
@@ -13,8 +13,19 @@ function MovieModal({
     vote_average,
     setModalOpen
 }) {
-    const [tailerId, setTailerId] = useState("");
+    // 모달 바깥 창 클릭시 닫기
+    const outSection = useRef();
+    const handleCloseModal = (e) => {
+        if (e.target === outSection.current) setModalOpen(false);
+    };
+    // useEffect(() => {
+    //     window.addEventListener("click", handleCloseModal);
+    //     return () => {
+    //         window.addEventListener("click", handleCloseModal);
+    //     };
+    // }, []);
 
+    const [tailerId, setTailerId] = useState("");
     useEffect(() => {
         if (tailerId) {
             setTailerId("");
@@ -26,11 +37,11 @@ function MovieModal({
                 })
                 .catch((e) => console.log(e))
         }
-    }, [])
+    }, []);
 
     return (
         <div className="presentation">
-            <div className='wrapper-modal'>
+            <div className='wrapper-modal' ref={outSection} onClick={handleCloseModal}>
                 <div className='modal'>
                     <span
                         className='modal-close'
@@ -38,6 +49,7 @@ function MovieModal({
                     >
                         X
                     </span>
+
                     {tailerId ?
                         <iframe
                             width={"100%"}
